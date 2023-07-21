@@ -1,6 +1,8 @@
 package com.example.daggertutorial
 
-class UserRegistrationService(val userRepository: UserRepository,val emailService: EmailService){
+import javax.inject.Inject
+
+class UserRegistrationService @Inject constructor(val userRepository: UserRepository,val emailService: NotificationService){
 
     fun registerUser(email:String,password:String){
         userRepository.saveUser(email,password)
