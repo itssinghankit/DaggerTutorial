@@ -3,6 +3,7 @@ package com.example.daggertutorial
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 //@Module
 //class UserRepositoryModule {
@@ -13,8 +14,17 @@ import dagger.Provides
 //    }
 //}
 @Module
-abstract class UserRepositoryModule {
+class UserRepositoryModule {
+//    @Named("sql")
+    @SqlAnnotation
+    @Provides
+    fun getSqlRepository(sqlUserRepository: SQLUserRepository):UserRepository{
+        return sqlUserRepository
+    }
 
-    @Binds
-    abstract fun getUserRepository(sqlUserRepository: SQLUserRepository):UserRepository
+    @Named("firebase")
+    @Provides
+    fun getFirebaseUserRepository():UserRepository{
+        return FirebaseUserRepository()
+    }
 }
