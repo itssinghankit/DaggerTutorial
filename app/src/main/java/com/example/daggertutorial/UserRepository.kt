@@ -8,12 +8,12 @@ interface UserRepository{
 }
 class SQLUserRepository @Inject constructor():UserRepository{
     override fun saveUser(email: String, password: String) {
-        Log.d("meow","user data saved in sql")
+        Log.d("meow","user data saved in sql ")
     }
 }
 
-class FirebaseUserRepository:UserRepository{
+class FirebaseUserRepository(private val returnCount:Int):UserRepository{
     override fun saveUser(email: String, password: String) {
-        Log.d("meow","user data saved in firebase")
+        Log.d("meow","user data saved in firebase ${returnCount.toString()}")
     }
 }

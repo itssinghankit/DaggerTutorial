@@ -14,7 +14,7 @@ import javax.inject.Named
 //    }
 //}
 @Module
-class UserRepositoryModule {
+class UserRepositoryModule(val returnCount:Int) {
 //    @Named("sql")
     @SqlAnnotation
     @Provides
@@ -25,6 +25,6 @@ class UserRepositoryModule {
     @Named("firebase")
     @Provides
     fun getFirebaseUserRepository():UserRepository{
-        return FirebaseUserRepository()
+        return FirebaseUserRepository(returnCount)
     }
 }
